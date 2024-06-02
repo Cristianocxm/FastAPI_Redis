@@ -52,8 +52,6 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int):
             await manager.broadcast(f"Client #{client_id} diz: {data}")
             timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             message = [data, timestamp]
-            print(f'chat:{client_id}', message)
-            print(message)
             rd.set(f'chat:{client_id}', json.dumps(message))
     except WebSocketDisconnect:
         manager.disconnect(websocket)
